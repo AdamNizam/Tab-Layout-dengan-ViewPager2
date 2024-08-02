@@ -2,6 +2,7 @@ package com.example.mytablayout
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -15,7 +16,13 @@ class MainActivity : AppCompatActivity() {
             R.string.tab_text_1,
             R.string.tab_text_2
         )
+        @DrawableRes
+        private val TAB_ICONS = intArrayOf(
+            R.drawable.icon_airplane,
+            R.drawable.ic_call
+        )
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
+            tab.setIcon(TAB_ICONS[position])
         }.attach()
 
         supportActionBar?.elevation = 0f
